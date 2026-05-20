@@ -1,6 +1,5 @@
 {
   "name": "travelhub",
-  "private": true,
   "description": "Aplicación web de planificación de viajes con múltiples APIs externas",
   "type": "module",
   "version": "1.0.0",

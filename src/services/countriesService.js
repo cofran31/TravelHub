@@ -13,7 +13,7 @@ export async function searchCountries(name) {
   //let data = {};
   if (cached) return cached
 // busqueda por pais
-  //const {data} = await countriesClient.get(`/translation/${encodeURIComponent(name)}`);
+  const {data} = await countriesClient.get(`/translation/${encodeURIComponent(name)}`);
 
 
   
