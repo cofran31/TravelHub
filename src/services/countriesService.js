@@ -12,7 +12,7 @@ export async function searchCountries(name) {
   const cached = getCache(cacheKey)
   if (cached) return cached
 
-  const { data } = await countriesClient.get(`/name/${encodeURIComponent(name)}`)
+  const { data } = await countriesClient.get(`/translation/${encodeURIComponent(name)}`)
 
   // normalizo los datos para exponer solo los campos necesarios
   const result = data.map(country => ({
