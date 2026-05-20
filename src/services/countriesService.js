@@ -10,10 +10,13 @@ import { getCache, setCache, TTL } from '@/utils/cache.js'
 export async function searchCountries(name) {
   const cacheKey = `countries_${name.toLowerCase()}`
   const cached = getCache(cacheKey)
+  //let data = {};
   if (cached) return cached
+// busqueda por pais
+  //const {data} = await countriesClient.get(`/translation/${encodeURIComponent(name)}`);
 
-  const { data } = await countriesClient.get(`/translation/${encodeURIComponent(name)}`)
 
+  
   // normalizo los datos para exponer solo los campos necesarios
   const result = data.map(country => ({
     name: country.name.common,
