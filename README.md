@@ -1,12 +1,11 @@
-# <center>Proyecto Final - TravelHub</center>
-
 # <center>Documentación Técnica</center>
 
+<center>Proyecto Final - TravelHub </center>
+
 ## Maestrante: Juan Carlos Ortube Lahor
-
-## * <a href="https://cofran31.github.io/travel/" target="_blank" rel="noopener noreferrer">DEMO FUNCIONAL  [🔗]</a>
-
-## Objetivo General
+* <a href="https://cofran31.github.io/travel/" target="_blank" rel="noopener noreferrer">DEMO FUNCIONAL  [🔗]</a>
+##
+ ## Objetivo General
 Desarrollar una aplicación web funcional que integre **al menos 4 APIs externas distintas**, demuestre dominio de patrones avanzados de consumo de APIs y ofrezca una experiencia de usuario coherente y profesional. 
 
 ## 1 Diagrama de Arquitectura
@@ -17,7 +16,7 @@ Desarrollar una aplicación web funcional que integre **al menos 4 APIs externas
 
  | API | URL Base | Autenticación | Endpoints Consumidos | Limitaciones |
 | :--- | :---: | ---: | ---: | ---: | 
-|**RestCountries** |`https://restcountries.com/v3.1` | Ninguna | `/name/{name}`, `/alpha/{cca2}` | Sin límite oficial |
+|**RestCountries** |`https://restcountries.com/v3.1` | Ninguna | `/translation/{name}`,  `/capital/{name}`,`/alpha/{cca2}` | Sin límite oficial |
 |**Open-Meteo**|`https://api.open-meteo.com/v1` | Ninguna | `/forecast` | 10,000 req/día |
 |**Open-Meteo Geocoding** |`https://geocoding-api.open-meteo.com/v1` | Ninguna | `/search` | Incluida en Open-Meteo |
 |**Unsplash**|`https://api.unsplash.com` | `Client-ID` (header) | `/search/photos` | 50 req/hora (free) |
@@ -100,7 +99,7 @@ Se eligió `Promise.allSettled` sobre `Promise.all` porque:
 
   
 
-### 1. Unsplash sin API Key en desarrollo
+### 4.1. Unsplash sin API Key en desarrollo
 
 **Problema**: Unsplash requiere clave de desarrollador; en desarrollo no siempre está disponible.
 
@@ -108,7 +107,7 @@ Se eligió `Promise.allSettled` sobre `Promise.all` porque:
 
   
 
-### 2. ExchangeRate-API con cuota limitada
+### 4.2. ExchangeRate-API con cuota limitada
 
 **Problema**: El plan gratuito tiene 1500 req/mes, fácil de agotar en desarrollo.
 
@@ -116,7 +115,7 @@ Se eligió `Promise.allSettled` sobre `Promise.all` porque:
 
   
 
-### 3. Open-Meteo no acepta nombres de ciudad directamente
+### 4.3. Open-Meteo no acepta nombres de ciudad directamente
 
 **Problema**: La API de pronóstico solo acepta coordenadas (lat/lon), no nombres.
 
@@ -124,13 +123,16 @@ Se eligió `Promise.allSettled` sobre `Promise.all` porque:
 
   
 
-### 4. `Promise.allSettled` requiere manejo explícito de errores parciales
+### 4.4. `Promise.allSettled` requiere manejo explícito de errores parciales
 
 **Problema**: A diferencia de `Promise.all`, `allSettled` no lanza excepciones; los errores están en `result.reason`.
 
 **Solución**: En `destinationService.js` se itera sobre cada resultado, se extrae `value` o se registra el error en el objeto `errors`, que se propaga a los componentes para mostrar mensajes específicos por módulo sin bloquear los demás.
 
-  
+###  4.5. **RestCountries manejo de paises y capitales**
+ **Problema**: Usando el api de RestCountries solo tiene endpoints específicos de paisa y capitales, además que el uso de idioma en los nombres de búsqueda.
+
+**Solución**: En `searchCountries.js` se valida el resultado primeramente de pais en caso que no tenga resultados y se produce un error se hace una excepcion para que busque por capital, adicionalmente para el idioma se usa el endpoint de `/translation/{name}`, para distinguir diferentes idiomas.
 
 ## 5 Instrucciones de Instalación y Ejecución
 
@@ -188,28 +190,21 @@ Abre http://localhost:5173 en tu navegador.
 ### 4. Construir para producción
 
 ```bash
-
 npm  run  build  # genera dist/
 
 npm  run  preview  # previsualiza el build
-
 ```
+## 5 Conclusiones
+Se logra realizar en su totalidad el proyecto TravelHub que permite realizar búsquedas por paises y ciudades capitales y mostrar el clima (sugerencia de vestimenta), conversor de divisas, y galeria de imagenes de cada busqueda, se logra realizar todo lo solicitado en el documento de trabajo, usando el framework VUE con VITE resulta una manera sencilla de realizar aplicaciones SPA y juntamente el uso de cache permite una aplicacion muy rapida y versatil.
+
 ### Screenshots
 
 ![home](https://cofran31.github.io/travel/screenshots/1_home.png)
-
 ![busqueda](https://cofran31.github.io/travel/screenshots/2_busqueda.png)
-
 ![loading](https://cofran31.github.io/travel/screenshots/3_loading_busqueda.png)
-
 ![resultado](https://cofran31.github.io/travel/screenshots/4_resultado_busqueda.png)
-
 ![informacion_pais](https://cofran31.github.io/travel/screenshots/5_informacion_pais.png)
-
 ![clima_pais](https://cofran31.github.io/travel/screenshots/6_clima_pais.png)
-
 ![tasa_cambio](https://cofran31.github.io/travel/screenshots/7_tasa_cambio_pais.png)
-
 ![imagenes_pais](https://cofran31.github.io/travel/screenshots/8_imagenes_pais.png)
-
 
