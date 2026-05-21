@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/',
+    path: '/travel',
     name: 'Home',
     component: () => import('@/views/HomeView.vue'),
     meta: { title: 'TravelHub — Inicio' }
   },
   {
-    path: '/destino/:country',
+    path: '/travel/destino/:country',
     name: 'Destino',
     component: () => import('@/views/DestinoView.vue'),
     meta: { title: 'Explorar Destino' }

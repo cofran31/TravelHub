@@ -2,7 +2,7 @@
   <header class="navbar">
     <div class="container navbar-inner">
       <!-- Logo -->
-      <RouterLink to="/" class="logo">
+      <RouterLink to="/travel" class="logo">
         <span class="logo-icon">✈</span>
         <span class="logo-text">Travel<em>Hub</em></span>
       </RouterLink>
@@ -22,7 +22,7 @@
 
       <!-- Nav links -->
       <nav class="navbar-links">
-        <RouterLink to="/" class="nav-link">Inicio</RouterLink>
+        <RouterLink to="/travel" class="nav-link">Inicio</RouterLink>
       </nav>
     </div>
   </header>

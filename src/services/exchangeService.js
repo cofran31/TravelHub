@@ -29,10 +29,10 @@ export async function getExchangeRates(baseCurrency = 'USD') {
       }
       setCache(cacheKey, result, TTL.EXCHANGE)
       return result
-    }// else {
+    } else {
       // Opción B: Frankfurter (fallback gratuito sin key)
-      //return await getFrankfurterRates(baseCurrency)
-    //}
+      return await getFrankfurterRates(baseCurrency)
+    }
   } catch (err) {
     // Si ExchangeRate-API falla (cuota agotada, etc.), usamos Frankfurter
     console.warn('[Exchange] Fallback a Frankfurter:', err.message)

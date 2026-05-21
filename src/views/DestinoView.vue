@@ -20,7 +20,7 @@
         <div style="font-size: 48px">🗺️</div>
         <h2 style="font-family: var(--font-display); font-size: 28px;">Destino no encontrado</h2>
         <p>{{ error }}</p>
-        <RouterLink to="/" class="btn btn-primary" style="margin-top: 8px">
+        <RouterLink to="/travel" class="btn btn-primary" style="margin-top: 8px">
           ← Volver al inicio
         </RouterLink>
       </div>
@@ -31,7 +31,7 @@
 
       <!-- Breadcrumb + título -->
       <div class="destino-header">
-        <RouterLink to="/" class="back-link">← Inicio</RouterLink>
+        <RouterLink to="/travel" class="back-link">← Inicio</RouterLink>
         <div class="badge">Destino</div>
       </div>
 
