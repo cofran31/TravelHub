@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 export default defineConfig({
   plugins: [vue()],
+  base: "/travel",  
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
